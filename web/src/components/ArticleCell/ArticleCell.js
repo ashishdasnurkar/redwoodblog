@@ -18,5 +18,11 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ article }) => {
-  return <div>{JSON.stringify(article)}</div>
+  return (
+    <article key={article.id}>
+      <h2>{article.title}</h2>
+      <div>{article.body}</div>
+      <h6>{article.createdAt}</h6>
+    </article>
+  )
 }
