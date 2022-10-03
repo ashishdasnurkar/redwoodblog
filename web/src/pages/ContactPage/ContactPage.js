@@ -11,7 +11,7 @@ const CREATE_CONTACT = gql`
 `
 
 const ContactPage = () => {
-  const [create, {loading}] = useMutation(CREATE_CONTACT, {
+  const [create, {loading, error}] = useMutation(CREATE_CONTACT, {
     onCompleted: () => {
       toast.success("Thank you for your message!")
     }
@@ -29,15 +29,13 @@ const ContactPage = () => {
     <>
       <MetaTags title="Contact" description="Contact page" />
       <Toaster />
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onSubmit} error={error}>
         <Label name="name" errorClassName="error">Name</Label>
         <TextField name="name" errorClassName="error" validation={{required: true}}></TextField>
         <FieldError name="name" className="error"></FieldError>
 
         <Label name="email" errorClassName="error">Email</Label>
-        <TextField name="email" errorClassName="error" validation={{required: true, pattern: {
-            value: /[^@]+@[^\.]+\..+/,
-          }}}></TextField>
+        <TextField name="email" errorClassName="error" validation={{required: true}}></TextField>
         <FieldError name="email" className="error"></FieldError>
 
         <Label name="email" errorClassName="error">Message</Label>
