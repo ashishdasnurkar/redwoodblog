@@ -1,4 +1,4 @@
-import { Form, TextField, TextAreaField, Submit, FieldError, Label} from '@redwoodjs/forms'
+import { Form, TextField, TextAreaField, Submit, FieldError, Label, FormError} from '@redwoodjs/forms'
 import { MetaTags, useMutation } from '@redwoodjs/web'
 import { Toaster, toast } from '@redwoodjs/web/toast'
 
@@ -30,6 +30,7 @@ const ContactPage = () => {
       <MetaTags title="Contact" description="Contact page" />
       <Toaster />
       <Form onSubmit={onSubmit} error={error}>
+        <FormError error={error} wrapperClassName="form-error"/>
         <Label name="name" errorClassName="error">Name</Label>
         <TextField name="name" errorClassName="error" validation={{required: true}}></TextField>
         <FieldError name="name" className="error"></FieldError>
